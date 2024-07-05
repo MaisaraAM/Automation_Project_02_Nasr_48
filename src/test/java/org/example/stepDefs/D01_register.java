@@ -16,8 +16,8 @@ public class D01_register {
     Faker fake = new Faker();
     SoftAssert sftAsrt = new SoftAssert();
 
-    @Given("website homepage is visible")
-    public void websiteHomepageIsVisible() {
+    @Given("homepage is visible successfully")
+    public void homepageIsVisibleSuccessfully() {
         boolean homePageVisible = registration.homePageLoaded.isDisplayed();
         sftAsrt.assertTrue(homePageVisible);
     }
@@ -26,14 +26,16 @@ public class D01_register {
     public void userGoesToRegisterPage() throws InterruptedException {
         registration.goToRegisterPage.click();
         Thread.sleep(500);
+    }
 
-        //    Assert "New User Signup" is visible
+    @Then("verify 'New User Signup!' is visible")
+    public void verifyNewUserSignupIsVisible(){
         String actualUserSignupText = registration.newUserSignup.getText().toLowerCase();
         String expectedUserSignupText = "new user signup";
         sftAsrt.assertTrue(actualUserSignupText.contains(expectedUserSignupText));
     }
 
-    @And("user enters username")
+    @When("user enters username")
     public void userEntersUsername() throws IOException {
         String fkUsername = fake.name().username();
         registration.username.sendKeys(fkUsername);
@@ -51,14 +53,16 @@ public class D01_register {
     public void userClicksSignupButton() throws InterruptedException {
         registration.signupButton.click();
         Thread.sleep(500);
+    }
 
-        //    Assert "Enter Account Information" is visible
+    @Then("verify that 'ENTER ACCOUNT INFORMATION' is visible")
+    public void verifyThatEnterAccountInformationIsVisible() {
         String actualCrtAcntFormText = registration.createAccountForm.getText().toLowerCase();
         String expectedCrtAcntFornText = "enter account information";
         sftAsrt.assertTrue(actualCrtAcntFormText.contains(expectedCrtAcntFornText));
     }
 
-    @And("user enters password")
+    @When("user enters password")
     public void userEntersPassword() throws IOException {
         String fkPassword = fake.internet().password();
         registration.password.sendKeys(fkPassword);
@@ -88,42 +92,79 @@ public class D01_register {
     }
 
     @And("user enters first name")
-    public void userEntersFirstName() {
+    public void userEntersFirstName() throws IOException {
+        String fkFirstName = fake.name().firstName();
+        registration.fName.sendKeys(fkFirstName);
+        configurations.fkSet("genFirstName", fkFirstName);
     }
 
     @And("user enters last name")
-    public void userEntersLastName() {
+    public void userEntersLastName() throws IOException {
+        String fkLastName = fake.name().lastName();
+        registration.lName.sendKeys(fkLastName);
+        configurations.fkSet("getLastName", fkLastName);
     }
 
     @And("user enters address")
-    public void userEntersAddress() {
+    public void userEntersAddress() throws IOException {
+        String fkAddress1 = fake.address().streetAddress();
+        registration.address1.sendKeys(fkAddress1);
+        configurations.fkSet("genAddress1", fkAddress1);
     }
 
     @And("user enters country")
     public void userEntersCountry() {
+        Select slctCntry = new Select(registration.country);
+        slctCntry.selectByValue("New Zealand");
     }
 
     @And("user enters state")
-    public void userEntersState() {
+    public void userEntersState() throws IOException {
+        String fkState = fake.address().state();
+        registration.state.sendKeys(fkState);
+        configurations.fkSet("genState", fkState);
     }
 
     @And("user enters city")
-    public void userEntersCity() {
+    public void userEntersCity() throws IOException {
+        String fkCity = fake.address().city();
+        registration.city.sendKeys(fkCity);
+        configurations.fkSet("genCity", fkCity);
     }
 
     @And("user enters zipcode")
-    public void userEntersZipcode() {
+    public void userEntersZipcode() throws IOException {
+        String fkZipcode = fake.address().zipCode();
+        registration.zipcode.sendKeys(fkZipcode);
+        configurations.fkSet("genZipcode", fkZipcode);
     }
 
     @And("user enters mobile number")
-    public void userEntersMobileNumber() {
+    public void userEntersMobileNumber() throws IOException {
+        String fkMobileNum = fake.phoneNumber().cellPhone();
+        registration.mobileNum.sendKeys(fkMobileNum);
+        configurations.fkSet("genMobileNum", fkMobileNum);
     }
 
     @And("user clicks create account button")
-    public void userClicksCreateAccountButton() {
+    public void userClicksCreateAccountButton() throws InterruptedException {
+        registration.createAccountButton.click();
+        Thread.sleep(500);
     }
 
-    @Then("success message is displayed")
-    public void successMessageIsDisplayed() {
+    @Then("verify that 'ACCOUNT CREATED!' is visible")
+    public void verifyThatAccountCreatedIsVisible() throws InterruptedException {
+        boolean sucsMsg = registration.successMsg.isDisplayed();
+        sftAsrt.assertTrue(sucsMsg);
+        
+        registration.continueButton.click();
+        Thread.sleep(500);
+    }
+
+    @And("verify that 'Logged in as username' is visible")
+    public void verifyThatLoggedInAsUsernameIsVisible() throws IOException {
+        String genUsername = configurations.fkGet("genUsername");
+        String actualUsername = registration.userAccount.getText();
+        sftAsrt.assertTrue(actualUsername.contains(genUsername));
     }
 }
