@@ -28,6 +28,24 @@ public class P01_register {
     @FindBy(css = "div>h2[class*=\"title\"]")
     public WebElement createAccountForm;
 
+    @FindBy(id = "password")
+    public WebElement password;
+
+    @FindBy(id = "days")
+    public WebElement dobDay;
+
+    @FindBy(id = "months")
+    public WebElement dobMon;
+
+    @FindBy(id = "years")
+    public WebElement dobYr;
+
+    @FindBy(id = "newsletter")
+    public WebElement newsletter;
+
+    @FindBy(id = "optin")
+    public WebElement offers;
+
     public P01_register() {
         PageFactory.initElements(driver, this);
     }

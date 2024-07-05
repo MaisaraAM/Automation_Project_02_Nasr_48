@@ -2,9 +2,11 @@ package org.example.stepDefs;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P01_register;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
@@ -14,14 +16,18 @@ public class D01_register {
     Faker fake = new Faker();
     SoftAssert sftAsrt = new SoftAssert();
 
-    @When("user goes to register page")
-    public void userGoesToRegisterPage() throws InterruptedException {
+    @Given("website homepage is visible")
+    public void websiteHomepageIsVisible() {
         boolean homePageVisible = registration.homePageLoaded.isDisplayed();
         sftAsrt.assertTrue(homePageVisible);
+    }
 
+    @When("user goes to register page")
+    public void userGoesToRegisterPage() throws InterruptedException {
         registration.goToRegisterPage.click();
         Thread.sleep(500);
 
+        //    Assert "New User Signup" is visible
         String actualUserSignupText = registration.newUserSignup.getText().toLowerCase();
         String expectedUserSignupText = "new user signup";
         sftAsrt.assertTrue(actualUserSignupText.contains(expectedUserSignupText));
@@ -46,25 +52,39 @@ public class D01_register {
         registration.signupButton.click();
         Thread.sleep(500);
 
+        //    Assert "Enter Account Information" is visible
         String actualCrtAcntFormText = registration.createAccountForm.getText().toLowerCase();
         String expectedCrtAcntFornText = "enter account information";
         sftAsrt.assertTrue(actualCrtAcntFormText.contains(expectedCrtAcntFornText));
     }
 
     @And("user enters password")
-    public void userEntersPassword() {
+    public void userEntersPassword() throws IOException {
+        String fkPassword = fake.internet().password();
+        registration.password.sendKeys(fkPassword);
+        configurations.fkSet("genPassword", fkPassword);
     }
 
     @And("user enters date of birth")
     public void userEntersDateOfBirth() {
+        Select slctDay = new Select(registration.dobDay);
+        slctDay.selectByValue("1");
+
+        Select slctMon = new Select(registration.dobMon);
+        slctMon.selectByValue("1");
+
+        Select slctYr = new Select(registration.dobYr);
+        slctYr.selectByValue("2000");
     }
 
     @And("user selects newsletter checkbox")
     public void userSelectsNewsletterCheckbox() {
+        registration.newsletter.click();
     }
 
     @And("user selects offers checkbox")
     public void userSelectsOffersCheckbox() {
+        registration.offers.click();
     }
 
     @And("user enters first name")
