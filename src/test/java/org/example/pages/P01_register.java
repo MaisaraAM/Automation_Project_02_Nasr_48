@@ -13,7 +13,7 @@ public class P01_register {
     @FindBy(css = "a[href=\"/login\"]")
     public WebElement goToRegisterPage;
 
-    @FindBy(css = "div[class=\"signup-form\"]>h2")
+    @FindBy(className = "signup-form")
     public WebElement newUserSignup;
 
     @FindBy(name = "name")

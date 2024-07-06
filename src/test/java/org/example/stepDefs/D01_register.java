@@ -22,14 +22,13 @@ public class D01_register {
         sftAsrt.assertTrue(homePageVisible);
     }
 
-    @When("user goes to register page")
-    public void userGoesToRegisterPage() throws InterruptedException {
+    @When("user clicks on 'Signup-Login' button")
+    public void userClicksOnSignupLoginButton() {
         registration.goToRegisterPage.click();
-        Thread.sleep(500);
     }
 
     @Then("verify 'New User Signup!' is visible")
-    public void verifyNewUserSignupIsVisible(){
+    public void verifyNewUserSignupIsVisible() {
         String actualUserSignupText = registration.newUserSignup.getText().toLowerCase();
         String expectedUserSignupText = "new user signup";
         sftAsrt.assertTrue(actualUserSignupText.contains(expectedUserSignupText));
@@ -50,16 +49,15 @@ public class D01_register {
     }
 
     @And("user clicks signup button")
-    public void userClicksSignupButton() throws InterruptedException {
+    public void userClicksSignupButton() {
         registration.signupButton.click();
-        Thread.sleep(500);
     }
 
     @Then("verify that 'ENTER ACCOUNT INFORMATION' is visible")
     public void verifyThatEnterAccountInformationIsVisible() {
         String actualCrtAcntFormText = registration.createAccountForm.getText().toLowerCase();
-        String expectedCrtAcntFornText = "enter account information";
-        sftAsrt.assertTrue(actualCrtAcntFormText.contains(expectedCrtAcntFornText));
+        String expectedCrtAcntFormText = "enter account information";
+        sftAsrt.assertTrue(actualCrtAcntFormText.contains(expectedCrtAcntFormText));
     }
 
     @When("user enters password")
@@ -147,18 +145,16 @@ public class D01_register {
     }
 
     @And("user clicks create account button")
-    public void userClicksCreateAccountButton() throws InterruptedException {
+    public void userClicksCreateAccountButton() {
         registration.createAccountButton.click();
-        Thread.sleep(500);
     }
 
     @Then("verify that 'ACCOUNT CREATED!' is visible")
-    public void verifyThatAccountCreatedIsVisible() throws InterruptedException {
+    public void verifyThatAccountCreatedIsVisible() {
         boolean sucsMsg = registration.successMsg.isDisplayed();
         sftAsrt.assertTrue(sucsMsg);
         
         registration.continueButton.click();
-        Thread.sleep(500);
     }
 
     @And("verify that 'Logged in as username' is visible")
