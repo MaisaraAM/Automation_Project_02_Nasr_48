@@ -35,4 +35,21 @@ public class D02_login {
     public void userClicksLoginButton() {
         login.loginButton.click();
     }
+
+    @When("user enters incorrect email {string}")
+    public void userEntersIncorrectEmail(String incorrectEmail) {
+        login.email.sendKeys(incorrectEmail);
+    }
+
+    @And("user enters incorrect password {string}")
+    public void userEntersIncorrectPassword(String incorrectPassword) {
+        login.password.sendKeys(incorrectPassword);
+    }
+
+    @Then("verify error 'Your email or password is incorrect!' is visible")
+    public void verifyErrorYourEmailOrPasswordIsIncorrectIsVisible() {
+        String actualFailedLoginText = login.errorMsg.getText().toLowerCase();
+        String expectedFailedLoginText = "your email or password is incorrect";
+        sftAsrt.assertTrue(actualFailedLoginText.contains(expectedFailedLoginText));
+    }
 }

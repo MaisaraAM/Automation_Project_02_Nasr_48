@@ -1,6 +1,6 @@
 @smoke
   Feature: F01_Register | Register New User
-    Scenario: Guest user could register with valid data successfully
+    Scenario: Guest user can register with valid data successfully
       Given homepage is visible successfully
       When user clicks on 'Signup-Login' button
       Then verify 'New User Signup!' is visible

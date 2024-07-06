@@ -19,6 +19,9 @@ public class P02_login {
     @FindBy(css = "button[data-qa=\"login-button\"]")
     public WebElement loginButton;
 
+    @FindBy(css = "p[style*=\"color\"]")
+    public WebElement errorMsg;
+
     public P02_login() {
         PageFactory.initElements(driver, this);
     }
