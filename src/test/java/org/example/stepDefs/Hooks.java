@@ -26,7 +26,7 @@ public class Hooks {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(configurations.fkGet("URL"));
+        driver.get(configurations.getFake("URL"));
     }
 
     @After

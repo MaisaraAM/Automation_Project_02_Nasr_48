@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class configurations {
-    public static void fkSet(String key, String value) throws IOException {
+    public static void setFake(String key, String value) throws IOException {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream("config.properties");
 
@@ -19,7 +19,7 @@ public class configurations {
         prop.store(fos, "");
     }
 
-    public static String fkGet(String key) throws IOException {
+    public static String getFake(String key) throws IOException {
         String value;
         Properties prop = new Properties();
         FileInputStream fis =  new FileInputStream("config.properties");

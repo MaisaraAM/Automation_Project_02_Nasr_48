@@ -9,6 +9,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
+import static org.example.stepDefs.Hooks.driver;
+
 public class D02_login {
     P02_login login = new P02_login();
     SoftAssert sftAsrt = new SoftAssert();
@@ -22,13 +24,13 @@ public class D02_login {
 
     @When("user enters correct email")
     public void userEntersCorrectEmail() throws IOException {
-        String genEmail = configurations.fkGet("genEmail");
+        String genEmail = configurations.getFake("genEmail");
         login.email.sendKeys(genEmail);
     }
 
     @And("user enters correct password")
     public void userEntersCorrectPassword() throws IOException {
-        String genPassword = configurations.fkGet("genPassword");
+        String genPassword = configurations.getFake("genPassword");
         login.password.sendKeys(genPassword);
     }
 
@@ -55,5 +57,15 @@ public class D02_login {
 
         Color errorMsgColour = Color.fromString(login.errorMsg.getCssValue("color"));
         sftAsrt.assertEquals(errorMsgColour.asHex(), "#ff1a1a");
+    }
+
+    @When("user clicks logout button")
+    public void userClicksLogoutButton() {
+        login.logoutButton.click();
+    }
+
+    @Then("verify that user is navigated to login page")
+    public void verifyThatUserIsNavigatedToLoginPage() {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/login");
     }
 }

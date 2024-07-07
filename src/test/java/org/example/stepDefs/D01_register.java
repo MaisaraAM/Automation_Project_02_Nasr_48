@@ -38,14 +38,14 @@ public class D01_register {
     public void userEntersUsername() throws IOException {
         String fkUsername = fake.name().username();
         registration.username.sendKeys(fkUsername);
-        configurations.fkSet("genUsername", fkUsername);
+        configurations.setFake("genUsername", fkUsername);
     }
 
     @And("user enters email")
     public void userEntersEmail() throws IOException {
         String fkEmail = fake.internet().emailAddress();
         registration.email.sendKeys(fkEmail);
-        configurations.fkSet("genEmail", fkEmail);
+        configurations.setFake("genEmail", fkEmail);
     }
 
     @And("user clicks signup button")
@@ -64,7 +64,7 @@ public class D01_register {
     public void userEntersPassword() throws IOException {
         String fkPassword = fake.internet().password();
         registration.password.sendKeys(fkPassword);
-        configurations.fkSet("genPassword", fkPassword);
+        configurations.setFake("genPassword", fkPassword);
     }
 
     @And("user enters date of birth")
@@ -93,21 +93,21 @@ public class D01_register {
     public void userEntersFirstName() throws IOException {
         String fkFirstName = fake.name().firstName();
         registration.fName.sendKeys(fkFirstName);
-        configurations.fkSet("genFirstName", fkFirstName);
+        configurations.setFake("genFirstName", fkFirstName);
     }
 
     @And("user enters last name")
     public void userEntersLastName() throws IOException {
         String fkLastName = fake.name().lastName();
         registration.lName.sendKeys(fkLastName);
-        configurations.fkSet("getLastName", fkLastName);
+        configurations.setFake("getLastName", fkLastName);
     }
 
     @And("user enters address")
     public void userEntersAddress() throws IOException {
         String fkAddress1 = fake.address().streetAddress();
         registration.address1.sendKeys(fkAddress1);
-        configurations.fkSet("genAddress1", fkAddress1);
+        configurations.setFake("genAddress1", fkAddress1);
     }
 
     @And("user enters country")
@@ -120,28 +120,28 @@ public class D01_register {
     public void userEntersState() throws IOException {
         String fkState = fake.address().state();
         registration.state.sendKeys(fkState);
-        configurations.fkSet("genState", fkState);
+        configurations.setFake("genState", fkState);
     }
 
     @And("user enters city")
     public void userEntersCity() throws IOException {
         String fkCity = fake.address().city();
         registration.city.sendKeys(fkCity);
-        configurations.fkSet("genCity", fkCity);
+        configurations.setFake("genCity", fkCity);
     }
 
     @And("user enters zipcode")
     public void userEntersZipcode() throws IOException {
         String fkZipcode = fake.address().zipCode();
         registration.zipcode.sendKeys(fkZipcode);
-        configurations.fkSet("genZipcode", fkZipcode);
+        configurations.setFake("genZipcode", fkZipcode);
     }
 
     @And("user enters mobile number")
     public void userEntersMobileNumber() throws IOException {
         String fkMobileNum = fake.phoneNumber().cellPhone();
         registration.mobileNum.sendKeys(fkMobileNum);
-        configurations.fkSet("genMobileNum", fkMobileNum);
+        configurations.setFake("genMobileNum", fkMobileNum);
     }
 
     @And("user clicks create account button")
@@ -159,7 +159,7 @@ public class D01_register {
 
     @And("verify that 'Logged in as username' is visible")
     public void verifyThatLoggedInAsUsernameIsVisible() throws IOException {
-        String genUsername = configurations.fkGet("genUsername");
+        String genUsername = configurations.getFake("genUsername");
         String actualUsername = registration.userAccount.getText();
         sftAsrt.assertTrue(actualUsername.contains(genUsername));
     }

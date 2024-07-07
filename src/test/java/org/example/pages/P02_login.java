@@ -22,6 +22,9 @@ public class P02_login {
     @FindBy(css = "p[style*=\"color\"]")
     public WebElement errorMsg;
 
+    @FindBy(css = "a[href=\"/logout\"]")
+    public WebElement logoutButton;
+
     public P02_login() {
         PageFactory.initElements(driver, this);
     }
