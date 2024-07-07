@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P02_login;
+import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
@@ -51,5 +52,8 @@ public class D02_login {
         String actualFailedLoginText = login.errorMsg.getText().toLowerCase();
         String expectedFailedLoginText = "your email or password is incorrect";
         sftAsrt.assertTrue(actualFailedLoginText.contains(expectedFailedLoginText));
+
+        Color errorMsgColour = Color.fromString(login.errorMsg.getCssValue("color"));
+        sftAsrt.assertEquals(errorMsgColour.asHex(), "#ff1a1a");
     }
 }
