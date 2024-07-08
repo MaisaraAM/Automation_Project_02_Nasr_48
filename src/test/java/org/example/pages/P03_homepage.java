@@ -39,6 +39,18 @@ public class P03_homepage {
     @FindBy(css = "div>p:nth-child(8)")
     public WebElement product1Brand;
 
+    @FindBy(id = "search_product")
+    public WebElement searchField;
+
+    @FindBy(id = "submit_search")
+    public WebElement searchButton;
+
+    @FindBy(css = "h2.title.text-center")
+    public WebElement searchResults;
+
+    @FindBy(css = "div.productinfo.text-center>p")
+    public List<WebElement> productSeachList;
+
     public P03_homepage() {
         PageFactory.initElements(driver, this);
     }
