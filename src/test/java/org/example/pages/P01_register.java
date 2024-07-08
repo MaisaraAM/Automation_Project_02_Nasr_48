@@ -7,12 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import static org.example.stepDefs.Hooks.driver;
 
 public class P01_register {
-    @FindBy(id = "slider-carousel")
-    public WebElement homePageLoaded;
-
-    @FindBy(css = "a[href=\"/login\"]")
-    public WebElement goToRegisterPage;
-
+    ////    F01
     @FindBy(className = "signup-form")
     public WebElement newUserSignup;
 
@@ -78,9 +73,6 @@ public class P01_register {
 
     @FindBy(css = "a[data-qa=\"continue-button\"]")
     public WebElement continueButton;
-
-    @FindBy(css = "li>a>b")
-    public WebElement userAccount;
 
     public P01_register() {
         PageFactory.initElements(driver, this);

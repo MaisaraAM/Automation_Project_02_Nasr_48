@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P01_register;
+import org.example.pages.P03_homepage;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
@@ -13,18 +14,19 @@ import java.io.IOException;
 
 public class D01_register {
     P01_register registration = new P01_register();
+    P03_homepage homepage = new P03_homepage();
     Faker fake = new Faker();
     SoftAssert sftAsrt = new SoftAssert();
 
     @Given("homepage is visible successfully")
     public void homepageIsVisibleSuccessfully() {
-        boolean homePageVisible = registration.homePageLoaded.isDisplayed();
+        boolean homePageVisible = homepage.homePageLoaded.isDisplayed();
         sftAsrt.assertTrue(homePageVisible);
     }
 
     @When("user clicks on 'Signup-Login' button")
     public void userClicksOnSignupLoginButton() {
-        registration.goToRegisterPage.click();
+        homepage.goToRegisterPage.click();
     }
 
     @Then("verify 'New User Signup!' is visible")
@@ -160,7 +162,7 @@ public class D01_register {
     @And("verify that 'Logged in as username' is visible")
     public void verifyThatLoggedInAsUsernameIsVisible() throws IOException {
         String genUsername = configurations.getFake("genUsername");
-        String actualUsername = registration.userAccount.getText();
+        String actualUsername = homepage.userAccount.getText();
         sftAsrt.assertTrue(actualUsername.contains(genUsername));
     }
 }

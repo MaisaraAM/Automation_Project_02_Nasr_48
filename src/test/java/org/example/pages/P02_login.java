@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import static org.example.stepDefs.Hooks.driver;
 
 public class P02_login {
+    ////    F02
     @FindBy(className = "login-form")
     public WebElement loginToYourAccount;
 
@@ -21,9 +22,6 @@ public class P02_login {
 
     @FindBy(css = "p[style*=\"color\"]")
     public WebElement errorMsg;
-
-    @FindBy(css = "a[href=\"/logout\"]")
-    public WebElement logoutButton;
 
     public P02_login() {
         PageFactory.initElements(driver, this);

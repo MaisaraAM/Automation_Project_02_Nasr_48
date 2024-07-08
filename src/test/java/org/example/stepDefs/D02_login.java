@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P02_login;
+import org.example.pages.P03_homepage;
 import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
 
@@ -13,6 +14,7 @@ import static org.example.stepDefs.Hooks.driver;
 
 public class D02_login {
     P02_login login = new P02_login();
+    P03_homepage homepage = new P03_homepage();
     SoftAssert sftAsrt = new SoftAssert();
 
     @Then("verify 'Login to your account' is visible")
@@ -61,7 +63,7 @@ public class D02_login {
 
     @When("user clicks logout button")
     public void userClicksLogoutButton() {
-        login.logoutButton.click();
+        homepage.logoutButton.click();
     }
 
     @Then("verify that user is navigated to login page")

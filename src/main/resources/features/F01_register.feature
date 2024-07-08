@@ -1,5 +1,5 @@
 @smoke
-  Feature: F01_Register | Register New User
+  Feature: F01_register | Register New User
     Scenario: Guest user can register with valid data successfully
       Given homepage is visible successfully
       When user clicks on 'Signup-Login' button

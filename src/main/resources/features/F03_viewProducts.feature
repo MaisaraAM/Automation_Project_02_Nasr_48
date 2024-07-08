@@ -1,5 +1,5 @@
 @smoke
-  Feature: F03_View_Products | View and Search Products
+  Feature: F03_viewProducts | View and Search Products
     Scenario: User can view products list and product details
       Given homepage is visible successfully
       When user clicks on 'Products' button

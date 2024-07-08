@@ -1,5 +1,5 @@
 @smoke
-  Feature: F02_Login | User Login
+  Feature: F02_login | User Login
     Scenario: User can login with correct email and password
       Given homepage is visible successfully
       When user clicks on 'Signup-Login' button
