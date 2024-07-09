@@ -21,4 +21,4 @@
       Then verify that the product is displayed in cart page with exact quantity
       Examples:
         | quantity |
-        | 4        |
+        |        4 |
