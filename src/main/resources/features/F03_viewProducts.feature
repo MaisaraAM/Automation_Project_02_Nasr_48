@@ -1,7 +1,9 @@
 @smoke
   Feature: F03_viewProducts | View and Search Products
-    Scenario: User can view products list and product details
+    Background:
       Given homepage is visible successfully
+
+    Scenario: User can view products list and product details
       When user clicks on 'Products' button
       Then verify user is navigated to ALL PRODUCTS page successfully
       And the products list is visible
@@ -10,7 +12,6 @@
       And verify that product details are visible
 
     Scenario: User can search for products
-      Given homepage is visible successfully
       When user clicks on 'Products' button
       Then verify user is navigated to ALL PRODUCTS page successfully
       When user enters product name in search input
