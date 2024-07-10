@@ -98,4 +98,19 @@ public class D04_cart {
         int actProd1Qnty = cart.prod1CartQnty;
         sftAsrt.assertEquals(actProd1Qnty, 4);
     }
+
+    @Then("verify that cart page is displayed")
+    public void verifyThatCartPageIsDisplayed() {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/view_cart");
+    }
+
+    @When("user clicks 'Proceed To Checkout' button")
+    public void userClicksProceedToCheckoutButton() {
+        cart.checkoutButton.click();
+    }
+
+    @And("user clicks 'Register-Login' button")
+    public void userClicksRegisterLoginButton() {
+        cart.checkoutRegisterButton.click();
+    }
 }

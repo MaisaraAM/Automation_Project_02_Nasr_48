@@ -26,6 +26,13 @@ public class P05_cart {
     @FindBy(css = "#product-2>td.cart_total>p")
     public WebElement prod2CartTotal;
 
+    ////    F05
+    @FindBy(css = "a.btn.btn-default.check_out")
+    public WebElement checkoutButton;
+
+    @FindBy(css = "p>a[href=\"/login\"]")
+    public WebElement checkoutRegisterButton;
+
     public P05_cart() {
         PageFactory.initElements(driver, this);
     }
