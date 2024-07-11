@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P01_register;
 import org.example.pages.P03_homepage;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
 
@@ -155,6 +156,11 @@ public class D01_register {
     public void verifyThatAccountCreatedIsVisible() {
         boolean sucsMsg = registration.successMsg.isDisplayed();
         sftAsrt.assertTrue(sucsMsg);
+
+        Color successMsgColour = Color.fromString(registration.successMsg.getCssValue("color"));
+        sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
+
+        sftAsrt.assertAll();
     }
 
     @When("user clicks continue button")
