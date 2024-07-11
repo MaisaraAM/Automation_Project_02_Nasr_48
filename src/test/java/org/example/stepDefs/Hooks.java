@@ -23,14 +23,14 @@ public class Hooks {
     public void setUp() throws IOException, InterruptedException {
         FirefoxProfile ffProf = new FirefoxProfile();
         FirefoxOptions ffOpt = new FirefoxOptions();
-        ffProf.addExtension(new File(configurations.getFake("ffUB0")));
+        ffProf.addExtension(new File(configurations.getConfig("ffUB0")));
         ffOpt.setProfile(ffProf);
 
         EdgeOptions edOpt = new EdgeOptions();
-        edOpt.addExtensions(new File(configurations.getFake("chromeUB0")));
+        edOpt.addExtensions(new File(configurations.getConfig("chromeUB0")));
 
         ChromeOptions chrOpt = new ChromeOptions();
-        chrOpt.addExtensions(new File(configurations.getFake("chromeUB0")));
+        chrOpt.addExtensions(new File(configurations.getConfig("chromeUB0")));
 
         if (currentIndex % 3 == 0) {
             driver = new FirefoxDriver(ffOpt);
@@ -44,7 +44,7 @@ public class Hooks {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         //  Wait for extensions to load
         Thread.sleep(1500);
-        driver.get(configurations.getFake("URL"));
+        driver.get(configurations.getConfig("URL"));
     }
 
     @After

@@ -22,4 +22,5 @@
       And user enters mobile number
       And user clicks create account button
       Then verify that 'ACCOUNT CREATED!' is visible
-      And verify that 'Logged in as username' is visible
+      When user clicks continue button
+      Then verify that 'Logged in as username' is visible

@@ -155,11 +155,14 @@ public class D01_register {
     public void verifyThatAccountCreatedIsVisible() {
         boolean sucsMsg = registration.successMsg.isDisplayed();
         sftAsrt.assertTrue(sucsMsg);
-        
+    }
+
+    @When("user clicks continue button")
+    public void userClicksContinueButton() {
         registration.continueButton.click();
     }
 
-    @And("verify that 'Logged in as username' is visible")
+    @Then("verify that 'Logged in as username' is visible")
     public void verifyThatLoggedInAsUsernameIsVisible() throws IOException {
         String genUsername = configurations.getFake("genUsername");
         String actualUsername = homepage.userAccount.getText();
