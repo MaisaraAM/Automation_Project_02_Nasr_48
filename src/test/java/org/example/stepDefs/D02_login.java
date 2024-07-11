@@ -58,7 +58,9 @@ public class D02_login {
         sftAsrt.assertTrue(actualFailedLoginText.contains(expectedFailedLoginText));
 
         Color errorMsgColour = Color.fromString(login.errorMsg.getCssValue("color"));
-        sftAsrt.assertEquals(errorMsgColour.asHex(), "#ff1a1a");
+        sftAsrt.assertEquals(errorMsgColour.asHex(), "#ff0000");
+
+        sftAsrt.assertAll();
     }
 
     @When("user clicks logout button")
