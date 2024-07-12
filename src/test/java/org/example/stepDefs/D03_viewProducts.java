@@ -8,6 +8,8 @@ import org.example.pages.P04_products;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
+
 import static org.example.stepDefs.Hooks.driver;
 
 public class D03_viewProducts {
@@ -32,6 +34,8 @@ public class D03_viewProducts {
         sftAsrt.assertTrue(actualProductsPageTitle.contains(expectedProductsPageTitle));
 
         sftAsrt.assertEquals(products.productsList.size(), 34);
+
+        sftAsrt.assertAll();
     }
 
     @When("user click on 'View Product' of first product")
@@ -69,11 +73,14 @@ public class D03_viewProducts {
         String actualProdBrand = products.product1Brand.getText().toLowerCase();
         String expectedProdBrand = "polo";
         sftAsrt.assertTrue(actualProdBrand.contains(expectedProdBrand));
+
+        sftAsrt.assertAll();
     }
 
     @When("user enters product name in search input")
-    public void userEntersProductNameInSearchInput() {
-        products.searchField.sendKeys("jeans");
+    public void userEntersProductNameInSearchInput() throws IOException {
+        String searchQuery = configurations.getConfig("searchQuery");
+        products.searchField.sendKeys(searchQuery);
     }
 
     @And("user clicks search button")
@@ -89,10 +96,11 @@ public class D03_viewProducts {
     }
 
     @And("verify all the products related to search are visible")
-    public void verifyAllTheProductsRelatedToSearchAreVisible() {
+    public void verifyAllTheProductsRelatedToSearchAreVisible() throws IOException {
         for (WebElement productName : products.productSeachList) {
+            String searchQuery = configurations.getConfig("searchQuery");
             String prodName = productName.getText().toLowerCase();
-            sftAsrt.assertTrue(prodName.contains("jeans"));
+            sftAsrt.assertTrue(prodName.contains(searchQuery));
         }
     }
 }
