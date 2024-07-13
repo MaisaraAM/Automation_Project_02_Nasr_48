@@ -1,4 +1,4 @@
-@smoke
+
   Feature: F03_viewProducts | View and Search Products
     Background:
       Given homepage is visible successfully

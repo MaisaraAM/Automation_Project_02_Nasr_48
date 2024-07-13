@@ -1,4 +1,4 @@
-@smoke
+
   Feature: F04_cart | Add Products to Cart
     Background:
       Given homepage is visible successfully

@@ -9,7 +9,7 @@ import static org.example.stepDefs.Hooks.driver;
 public class P01_register {
     ////    F01
     @FindBy(className = "signup-form")
-    public WebElement newUserSignup;
+    public WebElement signupForm;
 
     @FindBy(name = "name")
     public WebElement username;
@@ -20,7 +20,7 @@ public class P01_register {
     @FindBy(css = "button[data-qa=\"signup-button\"]")
     public WebElement signupButton;
 
-    @FindBy(css = "div>h2[class*=\"title\"]")
+    @FindBy(css = "div>h2.title")
     public WebElement createAccountForm;
 
     @FindBy(id = "password")
@@ -71,7 +71,7 @@ public class P01_register {
     @FindBy(css = "h2[data-qa=\"account-created\"]")
     public WebElement successMsg;
 
-    @FindBy(css = "a[data-qa=\"continue-button\"]")
+    @FindBy(css = "div>a[data-qa=\"continue-button\"]")
     public WebElement continueButton;
 
     public P01_register() {

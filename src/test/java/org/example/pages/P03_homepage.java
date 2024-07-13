@@ -11,10 +11,10 @@ public class P03_homepage {
     @FindBy(id = "slider-carousel")
     public WebElement homePageLoaded;
 
-    @FindBy(css = "a[href=\"/login\"]")
+    @FindBy(css = "ul>li>a[href=\"/login\"]")
     public WebElement goToRegisterPage;
 
-    @FindBy(css = "li>a>b")
+    @FindBy(css = "ul.nav.navbar-nav>li>a>b")
     public WebElement userAccount;
 
     @FindBy(css = "a[href=\"/logout\"]")

@@ -32,9 +32,9 @@ public class D01_register {
 
     @Then("verify 'New User Signup!' is visible")
     public void verifyNewUserSignupIsVisible() {
-        String actualUserSignupText = registration.newUserSignup.getText().toLowerCase();
-        String expectedUserSignupText = "new user signup";
-        sftAsrt.assertTrue(actualUserSignupText.contains(expectedUserSignupText));
+        String actUserSignupText = registration.signupForm.getText().toLowerCase();
+        String expUserSignupText = "new user signup";
+        sftAsrt.assertTrue(actUserSignupText.contains(expUserSignupText));
     }
 
     @When("user enters username")
@@ -58,9 +58,9 @@ public class D01_register {
 
     @Then("verify that 'ENTER ACCOUNT INFORMATION' is visible")
     public void verifyThatEnterAccountInformationIsVisible() {
-        String actualCrtAcntFormText = registration.createAccountForm.getText().toLowerCase();
-        String expectedCrtAcntFormText = "enter account information";
-        sftAsrt.assertTrue(actualCrtAcntFormText.contains(expectedCrtAcntFormText));
+        String actCrtAcntFormText = registration.createAccountForm.getText().toLowerCase();
+        String expCrtAcntFormText = "enter account information";
+        sftAsrt.assertTrue(actCrtAcntFormText.contains(expCrtAcntFormText));
     }
 
     @When("user enters password")
@@ -154,8 +154,9 @@ public class D01_register {
 
     @Then("verify that 'ACCOUNT CREATED!' is visible")
     public void verifyThatAccountCreatedIsVisible() {
-        boolean sucsMsg = registration.successMsg.isDisplayed();
-        sftAsrt.assertTrue(sucsMsg);
+        String actSuccessMsg = registration.successMsg.getText().toLowerCase();
+        String expSuccessMsg = "account created";
+        sftAsrt.assertTrue(actSuccessMsg.contains(expSuccessMsg));
 
         Color successMsgColour = Color.fromString(registration.successMsg.getCssValue("color"));
         sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
@@ -171,7 +172,7 @@ public class D01_register {
     @Then("verify that 'Logged in as username' is visible")
     public void verifyThatLoggedInAsUsernameIsVisible() throws IOException {
         String genUsername = configurations.getFake("genUsername");
-        String actualUsername = homepage.userAccount.getText();
-        sftAsrt.assertTrue(actualUsername.contains(genUsername));
+        String actUsername = homepage.userAccount.getText();
+        sftAsrt.assertTrue(actUsername.contains(genUsername));
     }
 }

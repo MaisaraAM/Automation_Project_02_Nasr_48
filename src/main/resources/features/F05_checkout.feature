@@ -1,3 +1,4 @@
+
 Feature: F05_checkout | Place orders
   Background:
     Given homepage is visible successfully
