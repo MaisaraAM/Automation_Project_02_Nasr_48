@@ -17,7 +17,8 @@ public class P03_homepage {
     @FindBy(css = "ul.nav.navbar-nav>li>a>b")
     public WebElement userAccount;
 
-    @FindBy(css = "a[href=\"/logout\"]")
+    ////    F02
+    @FindBy(css = "ul>li>a[href=\"/logout\"]")
     public WebElement logoutButton;
 
     ////    F03

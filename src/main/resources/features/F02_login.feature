@@ -1,4 +1,4 @@
-
+@smoke
   Feature: F02_login | User Login
     Background:
       Given homepage is visible successfully
