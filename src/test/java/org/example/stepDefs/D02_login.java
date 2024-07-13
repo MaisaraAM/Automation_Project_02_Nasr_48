@@ -19,9 +19,9 @@ public class D02_login {
 
     @Then("verify 'Login to your account' is visible")
     public void verifyLoginToYourAccountIsVisible() {
-        String actualAccountLoginText = login.loginToYourAccount.getText().toLowerCase();
-        String expectedAccountLoginText = "login to your account";
-        sftAsrt.assertTrue(actualAccountLoginText.contains(expectedAccountLoginText));
+        String actAccountLoginText = login.loginForm.getText().toLowerCase();
+        String expAccountLoginText = "login to your account";
+        sftAsrt.assertTrue(actAccountLoginText.contains(expAccountLoginText));
     }
 
     @When("user enters correct email")
@@ -53,9 +53,9 @@ public class D02_login {
 
     @Then("verify error 'Your email or password is incorrect!' is visible")
     public void verifyErrorYourEmailOrPasswordIsIncorrectIsVisible() {
-        String actualFailedLoginText = login.errorMsg.getText().toLowerCase();
-        String expectedFailedLoginText = "your email or password is incorrect";
-        sftAsrt.assertTrue(actualFailedLoginText.contains(expectedFailedLoginText));
+        String actFailedLoginText = login.errorMsg.getText().toLowerCase();
+        String expFailedLoginText = "your email or password is incorrect";
+        sftAsrt.assertTrue(actFailedLoginText.contains(expFailedLoginText));
 
         Color errorMsgColour = Color.fromString(login.errorMsg.getCssValue("color"));
         sftAsrt.assertEquals(errorMsgColour.asHex(), "#ff0000");
@@ -69,7 +69,7 @@ public class D02_login {
     }
 
     @Then("verify that user is navigated to login page")
-    public void verifyThatUserIsNavigatedToLoginPage() {
-        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/login");
+    public void verifyThatUserIsNavigatedToLoginPage() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("loginURL"));
     }
 }
