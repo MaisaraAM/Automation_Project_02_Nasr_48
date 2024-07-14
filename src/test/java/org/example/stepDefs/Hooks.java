@@ -42,6 +42,7 @@ public class Hooks {
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         ////    Wait for extensions to load
         Thread.sleep(1500);
         driver.get(configurations.getConfig("URL"));

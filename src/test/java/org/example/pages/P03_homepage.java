@@ -22,7 +22,7 @@ public class P03_homepage {
     public WebElement logoutButton;
 
     ////    F03
-    @FindBy(css = "a[href=\"/products\"]")
+    @FindBy(css = "ul>li>a[href=\"/products\"]")
     public WebElement productsPage;
 
     ////    F04

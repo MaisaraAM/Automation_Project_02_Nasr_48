@@ -23,15 +23,15 @@ public class D03_viewProducts {
     }
 
     @Then("verify user is navigated to ALL PRODUCTS page successfully")
-    public void verifyUserIsNavigatedToAllProductsPageSuccessfully() {
-        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/products");
+    public void verifyUserIsNavigatedToAllProductsPageSuccessfully() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("productsURL"));
     }
 
     @And("the products list is visible")
     public void theProductsListIsVisible() {
-        String actualProductsPageTitle = products.productsListTitle.getText().toLowerCase();
-        String expectedProductsPageTitle = "all products";
-        sftAsrt.assertTrue(actualProductsPageTitle.contains(expectedProductsPageTitle));
+        String actProductsPageTitle = products.productsListTitle.getText().toLowerCase();
+        String expProductsPageTitle = "all products";
+        sftAsrt.assertTrue(actProductsPageTitle.contains(expProductsPageTitle));
 
         sftAsrt.assertEquals(products.productsList.size(), 34);
 
@@ -44,35 +44,35 @@ public class D03_viewProducts {
     }
 
     @Then("user is landed to product detail page")
-    public void userIsLandedToProductDetailPage() {
-        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/product_details/1");
+    public void userIsLandedToProductDetailPage() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("product1URL"));
     }
 
     @And("verify that product details are visible")
     public void verifyThatProductDetailsAreVisible() {
-        String actualProdName = products.product1Name.getText().toLowerCase();
-        String expectedProdName = "blue top";
-        sftAsrt.assertTrue(actualProdName.contains(expectedProdName));
+        String actProdName = products.product1Name.getText().toLowerCase();
+        String expProdName = "blue top";
+        sftAsrt.assertTrue(actProdName.contains(expProdName));
 
-        String actualProdCateg = products.product1Category.getText().toLowerCase();
-        String expectedProdCateg = "women";
-        sftAsrt.assertTrue(actualProdCateg.contains(expectedProdCateg));
+        String actProdCateg = products.product1Category.getText().toLowerCase();
+        String expProdCateg = "women > tops";
+        sftAsrt.assertTrue(actProdCateg.contains(expProdCateg));
 
-        String actualProdPrice = products.product1Price.getText();
-        String expectedProdPrice = "500";
-        sftAsrt.assertTrue(actualProdPrice.contains(expectedProdPrice));
+        String actProdPrice = products.product1Price.getText();
+        String expProdPrice = "500";
+        sftAsrt.assertTrue(actProdPrice.contains(expProdPrice));
 
-        String actualProdAvail = products.product1Availability.getText().toLowerCase();
-        String expectedProdAvail = "in stock";
-        sftAsrt.assertTrue(actualProdAvail.contains(expectedProdAvail));
+        String actProdAvail = products.product1Availability.getText().toLowerCase();
+        String expProdAvail = "in stock";
+        sftAsrt.assertTrue(actProdAvail.contains(expProdAvail));
 
-        String actualProdCond = products.product1Condition.getText().toLowerCase();
-        String expectedProdCond = "new";
-        sftAsrt.assertTrue(actualProdCond.contains(expectedProdCond));
+        String actProdCond = products.product1Condition.getText().toLowerCase();
+        String expProdCond = "new";
+        sftAsrt.assertTrue(actProdCond.contains(expProdCond));
 
-        String actualProdBrand = products.product1Brand.getText().toLowerCase();
-        String expectedProdBrand = "polo";
-        sftAsrt.assertTrue(actualProdBrand.contains(expectedProdBrand));
+        String actProdBrand = products.product1Brand.getText().toLowerCase();
+        String expProdBrand = "polo";
+        sftAsrt.assertTrue(actProdBrand.contains(expProdBrand));
 
         sftAsrt.assertAll();
     }
@@ -90,9 +90,9 @@ public class D03_viewProducts {
 
     @Then("verify 'SEARCHED PRODUCTS' is visible")
     public void verifySearchedProductsIsVisible() {
-        String actualProdSearchTitle = products.searchResults.getText().toLowerCase();
-        String expectedProdSearchTitle = "searched products";
-        sftAsrt.assertTrue(actualProdSearchTitle.contains(expectedProdSearchTitle));
+        String actProdSearchTitle = products.searchResults.getText().toLowerCase();
+        String expProdSearchTitle = "searched products";
+        sftAsrt.assertTrue(actProdSearchTitle.contains(expProdSearchTitle));
     }
 
     @And("verify all the products related to search are visible")

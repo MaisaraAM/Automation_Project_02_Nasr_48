@@ -10,16 +10,16 @@ import static org.example.stepDefs.Hooks.driver;
 
 public class P04_products {
     ////    F03
-    @FindBy(css = "h2.title.text-center")
+    @FindBy(css = "div.features_items>h2")
     public WebElement productsListTitle;
 
-    @FindBy(className = "product-image-wrapper")
+    @FindBy(className = "single-products")
     public List<WebElement> productsList;
 
     @FindBy(css = "a[href=\"/product_details/1\"]")
     public WebElement product1;
 
-    @FindBy(css = "div[class=\"product-information\"]>h2")
+    @FindBy(css = "div.product-information>h2")
     public WebElement product1Name;
 
     @FindBy(css = "div>p:nth-child(3)")
@@ -43,10 +43,10 @@ public class P04_products {
     @FindBy(id = "submit_search")
     public WebElement searchButton;
 
-    @FindBy(css = "h2.title.text-center")
+    @FindBy(css = "div.features_items>h2")
     public WebElement searchResults;
 
-    @FindBy(css = "div.productinfo.text-center>p")
+    @FindBy(css = "div.productinfo>p")
     public List<WebElement> productSeachList;
 
     ////    F04
