@@ -3,15 +3,15 @@ package org.example.stepDefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.pages.P03_homepage;
 import org.example.pages.P04_products;
 import org.example.pages.P05_cart;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
+
 import static org.example.stepDefs.Hooks.driver;
 
 public class D04_cart {
-    P03_homepage homepage = new P03_homepage();
     P04_products products = new P04_products();
     P05_cart cart = new P05_cart();
     SoftAssert sftAsrt = new SoftAssert();
@@ -22,7 +22,8 @@ public class D04_cart {
     }
 
     @And("user clicks 'Continue Shopping' button")
-    public void userClicksContinueShoppingButton() {
+    public void userClicksContinueShoppingButton() throws InterruptedException {
+        Thread.sleep(300);
         products.contShopBtn.click();
     }
 
@@ -32,19 +33,22 @@ public class D04_cart {
     }
 
     @And("user clicks 'View Cart' button")
-    public void userClicksViewCartButton() {
-        homepage.viewCart.click();
+    public void userClicksViewCartButton() throws InterruptedException {
+        Thread.sleep(300);
+        products.viewCart.click();
     }
 
     @Then("verify both products are added to cart")
     public void verifyBothProductsAreAddedToCart() {
-        String actualProd1Name = products.product1.getText().toLowerCase();
-        String expectedProd1Name = "blue top";
-        sftAsrt.assertTrue(actualProd1Name.contains(expectedProd1Name));
+        String actProd1Name = products.product1.getText().toLowerCase();
+        String expProd1Name = "blue top";
+        sftAsrt.assertTrue(actProd1Name.contains(expProd1Name));
 
-        String actualProd2Name = products.product2.getText().toLowerCase();
-        String expectedProd2Name = "men tshirt";
-        sftAsrt.assertTrue(actualProd2Name.contains(expectedProd2Name));
+        String actProd2Name = products.product2.getText().toLowerCase();
+        String expProd2Name = "men tshirt";
+        sftAsrt.assertTrue(actProd2Name.contains(expProd2Name));
+
+        sftAsrt.assertAll();
     }
 
     @And("verify their prices, quantity, and total price")
@@ -57,11 +61,11 @@ public class D04_cart {
         String expProd2Price = "400";
         sftAsrt.assertTrue(actProd2Price.contains(expProd2Price));
 
-        int actProd1Qnty = cart.prod1CartQnty;
-        sftAsrt.assertEquals(actProd1Qnty, 1);
+        String actProd1Qnty = cart.prod1CartQnty.getText();
+        sftAsrt.assertEquals(actProd1Qnty, "1");
 
-        int actProd2Qnty = cart.prod2CartQnty;
-        sftAsrt.assertEquals(actProd2Qnty, 1);
+        String actProd2Qnty = cart.prod2CartQnty.getText();
+        sftAsrt.assertEquals(actProd2Qnty, "1");
 
         String actProd1Total = cart.prod1CartTotal.getText();
         String expProd1Total = "500";
@@ -70,6 +74,8 @@ public class D04_cart {
         String actProd2Total = cart.prod2CartTotal.getText();
         String expProd2Total = "400";
         sftAsrt.assertTrue(actProd2Total.contains(expProd2Total));
+
+        sftAsrt.assertAll();
     }
 
     @When("user clicks 'View Product' for any product on homepage")
@@ -78,8 +84,8 @@ public class D04_cart {
     }
 
     @Then("verify product page is opened")
-    public void verifyProductPageIsOpened() {
-        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/product_details/1");
+    public void verifyProductPageIsOpened() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("product1URL"));
     }
 
     @When("user increases product quantity to {string}")
@@ -89,28 +95,20 @@ public class D04_cart {
     }
 
     @And("user clicks 'Add to cart' button")
-    public void userClicksAddToCartButton() {
+    public void userClicksAddToCartButton() throws InterruptedException {
+        Thread.sleep(300);
         products.addProdQntyToCart.click();
     }
 
     @Then("verify that the product is displayed in cart page with exact quantity")
     public void verifyThatTheProductIsDisplayedInCartPageWithExactQuantity() {
-        int actProd1Qnty = cart.prod1CartQnty;
-        sftAsrt.assertEquals(actProd1Qnty, 4);
-    }
+        String actProd1Name = products.product1.getText().toLowerCase();
+        String expProd1Name = "blue top";
+        sftAsrt.assertTrue(actProd1Name.contains(expProd1Name));
 
-    @Then("verify that cart page is displayed")
-    public void verifyThatCartPageIsDisplayed() {
-        sftAsrt.assertEquals(driver.getCurrentUrl(), "https://automationexercise.com/view_cart");
-    }
+        String actProd1Qnty = cart.prod1CartQnty.getText();
+        sftAsrt.assertEquals(actProd1Qnty, "4");
 
-    @When("user clicks 'Proceed To Checkout' button")
-    public void userClicksProceedToCheckoutButton() {
-        cart.checkoutButton.click();
-    }
-
-    @And("user clicks 'Register-Login' button")
-    public void userClicksRegisterLoginButton() {
-        cart.checkoutRegisterButton.click();
+        sftAsrt.assertAll();
     }
 }

@@ -61,8 +61,8 @@ public class D05_checkout {
         String expProd1Price = "500";
         sftAsrt.assertTrue(actProd1Price.contains(expProd1Price));
 
-        int actProd1Qnty = cart.prod1CartQnty;
-        sftAsrt.assertEquals(actProd1Qnty, 1);
+        String actProd1Qnty = cart.prod1CartQnty.getText();
+        sftAsrt.assertEquals(actProd1Qnty, "1");
 
         String actProd1Total = cart.prod1CartTotal.getText();
         String expProd1Total = "500";

@@ -15,10 +15,10 @@ public class P05_cart {
     public WebElement prod2CartPrice;
 
     @FindBy(css = "#product-1>td.cart_quantity>button")
-    public int prod1CartQnty;
+    public WebElement prod1CartQnty;
 
     @FindBy(css = "#product-2>td.cart_quantity>button")
-    public int prod2CartQnty;
+    public WebElement prod2CartQnty;
 
     @FindBy(css = "#product-1>td.cart_total>p")
     public WebElement prod1CartTotal;

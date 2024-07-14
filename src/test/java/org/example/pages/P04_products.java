@@ -50,14 +50,17 @@ public class P04_products {
     public List<WebElement> productSeachList;
 
     ////    F04
-    @FindBy(css = "a[data-product-id=\"1\"]")
+    @FindBy(css = "div.productinfo>a[data-product-id=\"1\"]")
     public WebElement addProd1ToCart;
 
-    @FindBy(css = "button.btn.btn-success")
+    @FindBy(css = "#cartModal>div>div>div>button.btn.btn-success")
     public WebElement contShopBtn;
 
-    @FindBy(css = "a[data-product-id=\"2\"]")
+    @FindBy(css = "div.productinfo>a[data-product-id=\"2\"]")
     public WebElement addProd2ToCart;
+
+    @FindBy(css = "#cartModal>div>div>div>p>a[href=\"/view_cart\"]")
+    public WebElement viewCart;
 
     @FindBy(css = "a[href=\"/product_details/2\"]")
     public WebElement product2;
