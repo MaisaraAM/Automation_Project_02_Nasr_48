@@ -3,18 +3,31 @@ package org.example.stepDefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.pages.P04_products;
-import org.example.pages.P05_cart;
-import org.example.pages.P06_checkout;
+import org.example.pages.*;
+import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
+import static org.example.stepDefs.Hooks.driver;
+
 public class D05_checkout {
+    P01_register registration = new P01_register();
+    P03_homepage homepage = new P03_homepage();
     P04_products products = new P04_products();
     P05_cart cart = new P05_cart();
     P06_checkout checkout = new P06_checkout();
     SoftAssert sftAsrt = new SoftAssert();
+
+    @Then("verify that cart page is displayed")
+    public void verifyThatCartPageIsDisplayed() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("cartURL"));
+    }
+
+    @When("user clicks 'Proceed To Checkout' button")
+    public void userClicksProceedToCheckoutButton() {
+        cart.checkoutButton.click();
+    }
 
     @Then("verify the delivery address")
     public void verifyTheDeliveryAddress() throws IOException {
@@ -48,6 +61,23 @@ public class D05_checkout {
         sftAsrt.assertEquals(checkout.billAdrsCntry.getText(), "New Zealand");
 
         sftAsrt.assertEquals(checkout.billAdrsPhone.getText(), configurations.getFake("genMobileNum"));
+
+        sftAsrt.assertAll();
+    }
+
+    @When("user clicks on 'Delete Account' button")
+    public void userClicksOnDeleteAccountButton() {
+        homepage.deleteAcntButton.click();
+    }
+
+    @Then("verify 'ACCOUNT DELETED!' is visible")
+    public void verifyACCOUNTDELETEDIsVisible() {
+        String actSuccessMsg = registration.acntDelMsg.getText().toLowerCase();
+        String expSuccessMsg = "account deleted";
+        sftAsrt.assertTrue(actSuccessMsg.contains(expSuccessMsg));
+
+        Color successMsgColour = Color.fromString(registration.acntDelMsg.getCssValue("color"));
+        sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
 
         sftAsrt.assertAll();
     }

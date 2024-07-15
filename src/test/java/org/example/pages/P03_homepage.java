@@ -25,9 +25,12 @@ public class P03_homepage {
     @FindBy(css = "ul>li>a[href=\"/products\"]")
     public WebElement productsPage;
 
-    ////    F04
-    @FindBy(css = "p:nth-child(2)>a")
-    public WebElement viewCart;
+    ////    F05
+    @FindBy(css = "ul>li>a[href=\"/delete_account\"]")
+    public WebElement deleteAcntButton;
+
+    @FindBy(css = "ul>li>a[href=\"/view_cart\"]")
+    public WebElement cartPage;
 
     public P03_homepage() {
         PageFactory.initElements(driver, this);

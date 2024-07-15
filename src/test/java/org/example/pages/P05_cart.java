@@ -27,7 +27,7 @@ public class P05_cart {
     public WebElement prod2CartTotal;
 
     ////    F05
-    @FindBy(css = "a.btn.btn-default.check_out")
+    @FindBy(css = "div>a.btn.check_out")
     public WebElement checkoutButton;
 
     @FindBy(css = "p>a[href=\"/login\"]")

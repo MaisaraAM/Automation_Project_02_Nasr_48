@@ -154,11 +154,11 @@ public class D01_register {
 
     @Then("verify that 'ACCOUNT CREATED!' is visible")
     public void verifyThatAccountCreatedIsVisible() {
-        String actSuccessMsg = registration.successMsg.getText().toLowerCase();
+        String actSuccessMsg = registration.acntCreatMsg.getText().toLowerCase();
         String expSuccessMsg = "account created";
         sftAsrt.assertTrue(actSuccessMsg.contains(expSuccessMsg));
 
-        Color successMsgColour = Color.fromString(registration.successMsg.getCssValue("color"));
+        Color successMsgColour = Color.fromString(registration.acntCreatMsg.getCssValue("color"));
         sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
 
         sftAsrt.assertAll();

@@ -69,10 +69,14 @@ public class P01_register {
     public WebElement createAccountButton;
 
     @FindBy(css = "h2[data-qa=\"account-created\"]")
-    public WebElement successMsg;
+    public WebElement acntCreatMsg;
 
     @FindBy(css = "div>a[data-qa=\"continue-button\"]")
     public WebElement continueButton;
+
+    ////    F05
+    @FindBy(css = "h2[data-qa=\"account-deleted\"]")
+    public WebElement acntDelMsg;
 
     public P01_register() {
         PageFactory.initElements(driver, this);
