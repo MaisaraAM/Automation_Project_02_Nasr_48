@@ -38,13 +38,13 @@ public class P06_checkout {
     @FindBy(css = "#address_invoice>li.address_phone")
     public WebElement billAdrsPhone;
 
-    @FindBy(css = "td:nth-child(4)>p")
+    @FindBy(css = "tbody>tr>td:nth-child(4)>p.cart_total_price")
     public WebElement orderTotal;
 
     @FindBy(className = "form-control")
     public WebElement orderComment;
 
-    @FindBy(css = "a[href=\"/payment\"]")
+    @FindBy(css = "div>a[href=\"/payment\"]")
     public WebElement placeOrder;
 
     @FindBy(name = "name_on_card")
@@ -66,7 +66,7 @@ public class P06_checkout {
     public WebElement payOrder;
 
     @FindBy(css = "#success_message>div")
-    public WebElement successMsg;
+    public WebElement orderPlacMsg;
 
     public P06_checkout() {
         PageFactory.initElements(driver, this);

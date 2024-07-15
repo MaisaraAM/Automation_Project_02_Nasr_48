@@ -1,9 +1,11 @@
 package org.example.stepDefs;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
 
@@ -17,6 +19,7 @@ public class D05_checkout {
     P04_products products = new P04_products();
     P05_cart cart = new P05_cart();
     P06_checkout checkout = new P06_checkout();
+    Faker fake = new Faker();
     SoftAssert sftAsrt = new SoftAssert();
 
     @Then("verify that cart page is displayed")
@@ -82,6 +85,16 @@ public class D05_checkout {
         sftAsrt.assertAll();
     }
 
+    @And("user clicks 'Register-Login' button")
+    public void userClicksRegisterLoginButton() {
+        cart.checkoutRegisterButton.click();
+    }
+
+    @When("user clicks on 'Cart' button")
+    public void userClicksOnCartButton() {
+        homepage.cartPage.click();
+    }
+
     @And("review the order")
     public void reviewTheOrder() {String actualProd1Name = products.product1.getText().toLowerCase();
         String expectedProd1Name = "blue top";
@@ -116,26 +129,46 @@ public class D05_checkout {
     }
 
     @And("user enters payment details: name on card")
-    public void userEntersPaymentDetailsNameOnCard() {
+    public void userEntersPaymentDetailsNameOnCard() throws IOException {
+        checkout.nameOnCard.sendKeys(configurations.getFake("genFirstName"));
+        checkout.nameOnCard.sendKeys(Keys.SPACE);
+        checkout.nameOnCard.sendKeys(configurations.getFake("genLastName"));
     }
 
     @And("user enters card number")
     public void userEntersCardNumber() {
+        String fkcardNum = fake.business().creditCardNumber();
+        checkout.cardNumber.sendKeys(fkcardNum);
     }
 
     @And("user enters cvc")
     public void userEntersCvc() {
+        checkout.cardCVC.sendKeys("678");
     }
 
     @And("user enters expiration date")
     public void userEntersExpirationDate() {
+        checkout.expiryMon.sendKeys("06");
+        checkout.expiryYear.sendKeys("2026");
     }
 
     @And("user clicks 'Pay and Confirm Order' button")
     public void userClicksPayAndConfirmOrderButton() {
+        checkout.payOrder.click();
     }
 
     @Then("verify success message 'Your order has been placed successfully!' is visible")
     public void verifySuccessMessageYourOrderHasBeenPlacedSuccessfullyIsVisible() {
+        String actSuccessMsg = checkout.orderPlacMsg.getText().toLowerCase();
+        String expSuccessMsg = "your order has been placed successfully";
+        sftAsrt.assertTrue(actSuccessMsg.contains(expSuccessMsg));
+
+        Color successMsgColour = Color.fromString(checkout.orderPlacMsg.getCssValue("color"));
+        sftAsrt.assertEquals(successMsgColour.asHex(), "#3c763d");
+
+        Color successMsgBgColour = Color.fromString(checkout.orderPlacMsg.getCssValue("background-color"));
+        sftAsrt.assertEquals(successMsgBgColour.asHex(), "#dff0d8");
+
+        sftAsrt.assertAll();
     }
 }

@@ -30,7 +30,7 @@ public class P05_cart {
     @FindBy(css = "div>a.btn.check_out")
     public WebElement checkoutButton;
 
-    @FindBy(css = "p>a[href=\"/login\"]")
+    @FindBy(css = "div.modal-body>p>a[href=\"/login\"]")
     public WebElement checkoutRegisterButton;
 
     public P05_cart() {

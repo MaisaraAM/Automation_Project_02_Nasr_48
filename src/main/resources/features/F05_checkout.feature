@@ -61,7 +61,7 @@ Feature: F05_checkout | Place orders
     And user clicks create account button
     Then verify that 'ACCOUNT CREATED!' is visible
     And verify that 'Logged in as username' is visible
-    When user clicks on Cart' button
+    When user clicks on 'Cart' button
     And user clicks 'Proceed To Checkout' button
     Then verify the delivery address
     And verify the billing address
@@ -74,3 +74,7 @@ Feature: F05_checkout | Place orders
     And user enters expiration date
     And user clicks 'Pay and Confirm Order' button
     Then verify success message 'Your order has been placed successfully!' is visible
+    When user clicks on 'Delete Account' button
+    Then verify 'ACCOUNT DELETED!' is visible
+    When user clicks continue button
+    Then homepage is visible successfully
