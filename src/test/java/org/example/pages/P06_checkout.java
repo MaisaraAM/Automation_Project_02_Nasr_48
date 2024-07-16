@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
+
 import static org.example.stepDefs.Hooks.driver;
 
 public class P06_checkout {
@@ -67,6 +69,34 @@ public class P06_checkout {
 
     @FindBy(css = "div>h2[data-qa=\"order-placed\"]")
     public WebElement orderPlacMsg;
+
+    @FindBy(css = "div>a[href*=\"/download_invoice\"]")
+    public WebElement downloadInvoiceButton;
+
+    /**
+     * Checks if a file with the given name exists in the default Downloads folder.
+     *
+     * @param filename The name of the file to search for.
+     * @return true if the file exists, false otherwise.
+     */
+    public boolean isInvoiceDownloaded(String filename) {
+        // Get the user's home directory (this works for both Windows and Unix-based systems)
+        String userHome = System.getProperty("user.home");
+
+        // Path to the Downloads folder (this can vary based on the OS)
+        String downloadsPath = userHome + File.separator + "Downloads" + File.separator + filename;
+
+        File invoice = new File(downloadsPath);
+        return invoice.exists();
+    }
+
+    // Delete Invoice after download
+    public File delInvoiceFile(String filename) {
+        String userHome = System.getProperty("user.home");
+        String downloadsPath = userHome + File.separator + "Downloads" + File.separator + filename;
+        File delInvoice = new File(downloadsPath);
+        return delInvoice;
+    }
 
     public P06_checkout() {
         PageFactory.initElements(driver, this);

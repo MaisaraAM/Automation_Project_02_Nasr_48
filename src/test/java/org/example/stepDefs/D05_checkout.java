@@ -119,7 +119,7 @@ public class D05_checkout {
 
     @When("user enters description in comment text area")
     public void userEntersDescriptionInCommentTextArea() {
-        checkout.orderComment.sendKeys("Automation_Project_02_Nasr_48_TC09_Place_Order_Register_While_Checkout");
+        checkout.orderComment.sendKeys("Automation_Project_02_Nasr_48");
     }
 
     @And("user clicks 'Place Order'")
@@ -164,5 +164,23 @@ public class D05_checkout {
         sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
 
         sftAsrt.assertAll();
+    }
+
+    @When("user clicks 'Download Invoice' button")
+    public void userClicksDownloadInvoiceButton() {
+        checkout.downloadInvoiceButton.click();
+    }
+
+    @Then("verify invoice is downloaded successfully")
+    public void verifyInvoiceIsDownloadedSuccessfully() throws InterruptedException {
+        Thread.sleep(3000);
+
+        String filename = "invoice.txt";
+        sftAsrt.assertTrue(checkout.isInvoiceDownloaded(filename));
+//
+//        boolean delInvoice = checkout.delInvoiceFile(filename).delete();
+//        sftAsrt.assertTrue(delInvoice);
+//
+//        sftAsrt.assertAll();
     }
 }
