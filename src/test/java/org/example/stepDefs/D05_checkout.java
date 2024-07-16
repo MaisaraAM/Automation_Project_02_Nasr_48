@@ -5,7 +5,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.*;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
 
@@ -119,8 +118,8 @@ public class D05_checkout {
     }
 
     @When("user enters description in comment text area")
-    public void userEntersDescriptionInCommentTextArea() throws IOException {
-        checkout.orderComment.sendKeys(configurations.getFake("orderComment1"));
+    public void userEntersDescriptionInCommentTextArea() {
+        checkout.orderComment.sendKeys("Automation_Project_02_Nasr_48_TC09_Place_Order_Register_While_Checkout");
     }
 
     @And("user clicks 'Place Order'")
@@ -131,8 +130,6 @@ public class D05_checkout {
     @And("user enters payment details: name on card")
     public void userEntersPaymentDetailsNameOnCard() throws IOException {
         checkout.nameOnCard.sendKeys(configurations.getFake("genFirstName"));
-        checkout.nameOnCard.sendKeys(Keys.SPACE);
-        checkout.nameOnCard.sendKeys(configurations.getFake("genLastName"));
     }
 
     @And("user enters card number")
@@ -160,14 +157,11 @@ public class D05_checkout {
     @Then("verify success message 'Your order has been placed successfully!' is visible")
     public void verifySuccessMessageYourOrderHasBeenPlacedSuccessfullyIsVisible() {
         String actSuccessMsg = checkout.orderPlacMsg.getText().toLowerCase();
-        String expSuccessMsg = "your order has been placed successfully";
+        String expSuccessMsg = "order placed";
         sftAsrt.assertTrue(actSuccessMsg.contains(expSuccessMsg));
 
         Color successMsgColour = Color.fromString(checkout.orderPlacMsg.getCssValue("color"));
-        sftAsrt.assertEquals(successMsgColour.asHex(), "#3c763d");
-
-        Color successMsgBgColour = Color.fromString(checkout.orderPlacMsg.getCssValue("background-color"));
-        sftAsrt.assertEquals(successMsgBgColour.asHex(), "#dff0d8");
+        sftAsrt.assertEquals(successMsgColour.asHex(), "#008000");
 
         sftAsrt.assertAll();
     }

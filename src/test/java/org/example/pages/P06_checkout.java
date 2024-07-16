@@ -65,7 +65,7 @@ public class P06_checkout {
     @FindBy(id = "submit")
     public WebElement payOrder;
 
-    @FindBy(css = "#success_message>div")
+    @FindBy(css = "div>h2[data-qa=\"order-placed\"]")
     public WebElement orderPlacMsg;
 
     public P06_checkout() {
