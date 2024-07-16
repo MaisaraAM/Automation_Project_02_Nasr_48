@@ -71,6 +71,28 @@ public class P04_products {
     @FindBy(css = "button.btn.btn-default.cart")
     public WebElement addProdQntyToCart;
 
+    ////    F06
+    @FindBy(css = "div.left-sidebar>h2")
+    public WebElement categText;
+
+    @FindBy(id = "accordian")
+    public WebElement categPanels;
+
+    @FindBy(css = "a[data-parent=\"#accordian\"][href=\"#Women\"]")
+    public WebElement womenCateg;
+
+    @FindBy(css = "ul>li>a[href=\"/category_products/1\"]")
+    public WebElement dressCateg;
+
+    @FindBy(css = "div.features_items>h2")
+    public WebElement categPageTitle;
+
+    @FindBy(css = "a[data-parent=\"#accordian\"][href=\"#Men\"]")
+    public WebElement menCateg;
+
+    @FindBy(css = "ul>li>a[href=\"/category_products/6\"]")
+    public WebElement jeansCateg;
+
     public P04_products() {
         PageFactory.initElements(driver, this);
     }
