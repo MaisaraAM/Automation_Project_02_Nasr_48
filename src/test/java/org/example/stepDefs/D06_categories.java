@@ -56,4 +56,41 @@ public class D06_categories {
     public void verifyUserIsNavigatedToThatCategoryPage() throws IOException {
         sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("categ6URL"));
     }
+
+    @Then("verify that Brands are visible on left side bar")
+    public void verifyThatBrandsAreVisibleOnLeftSideBar() {
+        sftAsrt.assertTrue(products.brandPanel.isDisplayed());
+    }
+
+    @When("user clicks on any brand name")
+    public void userClicksOnAnyBrandName() {
+        products.brandPolo.click();
+    }
+
+    @Then("verify that user is navigated to brand page")
+    public void verifyThatUserIsNavigatedToBrandPage() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("brand1URL"));
+    }
+
+    @And("brand products are displayed")
+    public void brandProductsAreDisplayed() {
+        String brand1PageTitle =products.brand1PageTitle.getText().toLowerCase();
+        sftAsrt.assertTrue(brand1PageTitle.contains("polo"));
+    }
+
+    @When("user clicks on any other brand link on left side bar")
+    public void userClicksOnAnyOtherBrandLinkOnLeftSideBar() {
+        products.brandBiba.click();
+    }
+
+    @Then("verify that user is navigated to that brand page")
+    public void verifyThatUserIsNavigatedToThatBrandPage() throws IOException {
+        sftAsrt.assertEquals(driver.getCurrentUrl(), configurations.getConfig("brand2URL"));
+    }
+
+    @And("verify that user can see products")
+    public void verifyThatUserCanSeeProducts() {
+        String brand2PageTitle =products.brand2PageTitle.getText().toLowerCase();
+        sftAsrt.assertTrue(brand2PageTitle.contains("biba"));
+    }
 }

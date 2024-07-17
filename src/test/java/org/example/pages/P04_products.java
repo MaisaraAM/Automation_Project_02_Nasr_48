@@ -93,6 +93,21 @@ public class P04_products {
     @FindBy(css = "ul>li>a[href=\"/category_products/6\"]")
     public WebElement jeansCateg;
 
+    @FindBy(css = "div.brands_products>h2")
+    public WebElement brandPanel;
+
+    @FindBy(css = "ul>li>a[href=\"/brand_products/Polo\"]")
+    public WebElement brandPolo;
+
+    @FindBy(css = "div.features_items>h2")
+    public WebElement brand1PageTitle;
+
+    @FindBy(css = "ul>li>a[href=\"/brand_products/Biba\"]")
+    public WebElement brandBiba;
+
+    @FindBy(css = "div.features_items>h2")
+    public WebElement brand2PageTitle;
+
     public P04_products() {
         PageFactory.initElements(driver, this);
     }
